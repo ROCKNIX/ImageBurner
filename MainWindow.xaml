@@ -25,9 +25,9 @@ This is the main window of the application.
             <RowDefinition Height="Auto"/>
             <!-- 0: Logo -->
             <RowDefinition Height="Auto"/>
-            <!-- 1: Branch Selection -->
+            <!-- 1: Manufacturer/Device Grid -->
             <RowDefinition Height="Auto"/>
-            <!-- 2: Manufacturer/Device Grid -->
+            <!-- 2: Branch Selection -->
             <RowDefinition Height="Auto"/>
             <!-- 3: Select Drive -->
             <RowDefinition Height="Auto"/>
@@ -45,14 +45,8 @@ This is the main window of the application.
         <!-- Row 0: Logo -->
         <Image Grid.Row="0" Source="/logo.png" Height="50" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-        <!-- Row 1: Branch Selection -->
-        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,0,0,15">
-            <TextBlock Text="Select Branch:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-            <ComboBox x:Name="BranchComboBox" SelectionChanged="BranchComboBox_SelectionChanged" MinHeight="30"/>
-        </StackPanel>
-
-        <!-- Row 2: Manufacturer and Device Selection (in a nested Grid for side-by-side layout) -->
-        <Grid Grid.Row="2" Margin="0,0,0,15">
+        <!-- Row 1: Manufacturer and Device Selection (in a nested Grid for side-by-side layout) -->
+        <Grid Grid.Row="1" Margin="0,0,0,15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -69,6 +63,12 @@ This is the main window of the application.
                 <ComboBox x:Name="DeviceComboBox" DisplayMemberPath="Device" SelectionChanged="DeviceComboBox_SelectionChanged" MinHeight="30"/>
             </StackPanel>
         </Grid>
+
+        <!-- Row 2: Branch Selection -->
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,0,0,15">
+            <TextBlock Text="Select Branch:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <ComboBox x:Name="BranchComboBox" SelectionChanged="BranchComboBox_SelectionChanged" MinHeight="30"/>
+        </StackPanel>
 
         <!-- Row 3: Target Drive Selection -->
         <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0,0,0,15">
