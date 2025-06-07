@@ -1,0 +1,21 @@
+<!-- 
+This is the main application definition file. 
+- x:Class points to the code-behind file App.xaml.cs.
+- xmlns are XML namespace declarations for WPF.
+- StartupUri specifies the main window that opens when the application starts.
+-->
+<Application x:Class="ROCKNIXImageBurner.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ROCKNIXImageBurner"
+             StartupUri="MainWindow.xaml">
+
+    <!-- 
+    Application.Resources is a dictionary for defining resources that can be
+    used across the entire application, such as styles, templates, and brushes.
+    It is currently empty but can be populated as needed.
+    -->
+    <Application.Resources>
+
+    </Application.Resources>
+</Application>

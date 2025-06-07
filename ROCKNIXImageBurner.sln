@@ -1,0 +1,39 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36127.28
+MinimumVisualStudioVersion = 10.0.40219.1
+
+# Project definition:
+# - The first GUID {FAE04EC0-301F-11D3-BF4B-00C04F79EFBC} is the project type GUID for a C# project.
+# - "ROCKNIXImageBurner" is the project name.
+# - "ROCKNIXImageBurner.csproj" is the path to the project file.
+# - The second GUID {A5B9D8B4-9B0C-4E7F-8B0A-9B2D3C4D5E6F} is the unique Project GUID.
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ROCKNIXImageBurner", "ROCKNIXImageBurner.csproj", "{A5B9D8B4-9B0C-4E7F-8B0A-9B2D3C4D5E6F}"
+EndProject
+
+Global
+	# This section defines the solution-level configurations (Debug/Release) and platforms (Any CPU).
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	
+	# This section maps the solution configurations to the project configurations.
+	# It specifies which project configuration should be active and built for each solution configuration.
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5B9D8B4-9B0C-4E7F-8B0A-9B2D3C4D5E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B9D8B4-9B0C-4E7F-8B0A-9B2D3C4D5E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B9D8B4-9B0C-4E7F-8B0A-9B2D3C4D5E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B9D8B4-9B0C-4E7F-8B0A-9B2D3C4D5E6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	
+	# This section contains solution-level properties, such as whether the Solution Explorer node should be hidden.
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	
+	# This section is for global settings related to Visual Studio extensions.
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2AE4A91-259B-4E04-81F7-9A02E65B0111}
+	EndGlobalSection
+EndGlobal

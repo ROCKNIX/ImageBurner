@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This is the application manifest. It specifies metadata and settings that influence
+how the operating system treats the application.
+-->
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+
+	<!-- Defines the identity of the application assembly. -->
+	<assemblyIdentity version="1.0.0.0" name="ROCKNIXImageBurner.app"/>
+
+	<!-- Contains security-related information for the application. -->
+	<trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
+		<security>
+			<!--
+      Specifies the execution privileges required by the application.
+      The 'requireAdministrator' level ensures that the application will prompt for
+      and run with administrative privileges, which is necessary for raw disk access.
+      -->
+			<requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+				<requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
+			</requestedPrivileges>
+		</security>
+	</trustInfo>
+
+	<!-- Declares compatibility with specific versions of the Windows operating system. -->
+	<compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+		<application>
+			<!-- GUIDs for supported OS versions (Windows 10/11) -->
+			<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
+			<!-- Windows 11 -->
+			<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />
+			<!-- Windows 10 -->
+			<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />
+			<!-- Windows 8.1 -->
+			<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />
+			<!-- Windows 8 -->
+		</application>
+	</compatibility>
+
+	<!-- Contains settings specific to the application's behavior on Windows. -->
+	<application xmlns="urn:schemas-microsoft-com:asm.v3">
+		<windowsSettings>
+			<!--
+      Declares that the application is DPI-aware, which helps it render sharply
+      on high-DPI displays. PerMonitorV2 is the most modern and recommended setting.
+      -->
+			<dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/PM</dpiAware>
+			<dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">PerMonitorV2, PerMonitor</dpiAwareness>
+		</windowsSettings>
+	</application>
+
+</assembly>
