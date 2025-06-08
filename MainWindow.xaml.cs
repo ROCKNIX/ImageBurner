@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -432,6 +433,15 @@ namespace ROCKNIXImageBurner
             DownloadProgressBar.Value = 0;
             WriteProgressBar.Value = 0;
             await LoadDrivesAsync();
+        }
+
+        /// <summary>
+        /// Handles the click event of the 'About' button by creating and showing the AboutWindow.
+        /// </summary>
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog(); // ShowDialog makes the window modal.
         }
 
         /// <summary>

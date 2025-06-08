@@ -3,7 +3,6 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- Imports the default C# project settings. -->
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  
   <!-- Main project configuration properties -->
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -19,7 +18,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
-  
   <!-- Configuration-specific properties for the 'Debug' build. -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,7 +29,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  
   <!-- Configuration-specific properties for the 'Release' build. -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,13 +39,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  
   <!-- Properties for application manifest and icon. -->
   <PropertyGroup>
     <ApplicationIcon>rocknix.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
-  
   <!-- ItemGroup for assembly references required by the project. -->
   <ItemGroup>
     <Reference Include="System" />
@@ -67,7 +62,6 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
-  
   <!-- ItemGroup for WPF-specific files (App definition and Windows). -->
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -78,6 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -87,7 +84,6 @@
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
-  
   <!-- ItemGroup for the application's C# source files. -->
   <ItemGroup>
     <Compile Include="Models\DriveData.cs" />
@@ -99,24 +95,22 @@
     <Compile Include="Services\ImageWriter.cs" />
     <Compile Include="Services\NativeMethods.cs" />
   </ItemGroup>
-  
   <!-- ItemGroup for non-compiled files that are part of the project. -->
   <ItemGroup>
     <None Include="app.manifest" />
   </ItemGroup>
-  
   <!-- ItemGroup for embedded resources. -->
   <ItemGroup>
     <Resource Include="logo.png" />
     <Resource Include="rocknix.ico" />
   </ItemGroup>
-  
   <!-- ItemGroup to define folder structure within the Visual Studio Solution Explorer. -->
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
+    <Page Include="AboutWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  
   <!-- Imports the standard C# build targets. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

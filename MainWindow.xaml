@@ -23,7 +23,7 @@ This is the main window of the application.
         -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- 0: Logo -->
+            <!-- 0: Logo and About Button -->
             <RowDefinition Height="Auto"/>
             <!-- 1: Manufacturer/Device Grid -->
             <RowDefinition Height="Auto"/>
@@ -42,8 +42,37 @@ This is the main window of the application.
             <!-- 8: Status Bar -->
         </Grid.RowDefinitions>
 
-        <!-- Row 0: Logo -->
-        <Image Grid.Row="0" Source="/logo.png" Height="50" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <!-- Row 0: Logo and About Button -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Image Source="/logo.png" Height="50" HorizontalAlignment="Center" />
+
+            <!-- "About" button positioned in the top right corner -->
+            <Button x:Name="AboutButton" Click="AboutButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Width="24" Height="24" ToolTip="About this application"
+                    FontWeight="Bold" FontSize="14" Content="i">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="12" BorderBrush="Gray" BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
 
         <!-- Row 1: Manufacturer and Device Selection (in a nested Grid for side-by-side layout) -->
         <Grid Grid.Row="1" Margin="0,0,0,15">
