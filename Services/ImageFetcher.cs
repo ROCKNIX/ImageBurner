@@ -68,8 +68,8 @@ namespace ROCKNIXImageBurner.Services
                                 Dtb = imgElement.Element("dtb")?.Value ?? string.Empty
                             };
                         })
-                        // Only include images that have both a download URL and a checksum URL.
-                        .Where(img => !string.IsNullOrEmpty(img.Url) && !string.IsNullOrEmpty(img.Sha256Url))
+                        // Only include images that have a download URL. The checksum URL is optional.
+                        .Where(img => !string.IsNullOrEmpty(img.Url))
                         .ToList();
 
                     allImages.AddRange(imagesFromBranch);

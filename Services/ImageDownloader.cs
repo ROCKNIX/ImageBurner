@@ -26,48 +26,65 @@ namespace ROCKNIXImageBurner.Services
         }
 
         /// <summary>
-        /// Downloads an image file, automatically verifying it against its SHA256 checksum.
+        /// Downloads an image file, automatically verifying it against its SHA256 checksum if available.
         /// If a valid local file already exists, it will be used instead of re-downloading.
+        /// If no checksum is provided, verification is skipped.
         /// </summary>
         /// <param name="imageInfo">The metadata for the image to download.</param>
-        /// <param name="progress">An IProgress object to report download progress (0.0 to 1.0).</param>
+        /// <param name="progress">An IProgress object to report download progress (0.0 to 100.0).</param>
         /// <param name="statusReporter">An Action to report status updates to the UI.</param>
         /// <returns>The local file path of the downloaded and verified image.</returns>
         public async Task<string> DownloadAndVerifyAsync(ImageInfo imageInfo, IProgress<double> progress, Action<string> statusReporter)
         {
             string targetFileName = GetTargetFileName(imageInfo);
             string downloadsFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            Directory.CreateDirectory(downloadsFolderPath); // Ensure the directory exists.
+            Directory.CreateDirectory(downloadsFolderPath);
             string targetFilePath = Path.Combine(downloadsFolderPath, targetFileName);
 
             statusReporter($"Preparing for image: {imageInfo.OriginalName}");
 
             try
             {
-                // 1. Fetch the expected SHA256 checksum from its URL.
-                statusReporter("Fetching SHA256 checksum...");
-                string sha256FileContent = await _httpClient.GetStringAsync(imageInfo.Sha256Url);
-                string expectedSha256 = sha256FileContent.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+                string expectedSha256 = null;
 
-                if (string.IsNullOrWhiteSpace(expectedSha256))
+                // 1. If a checksum URL is provided, fetch the expected hash first.
+                if (!string.IsNullOrEmpty(imageInfo.Sha256Url))
                 {
-                    throw new Exception("Could not parse SHA256 hash from the checksum file.");
-                }
-                expectedSha256 = expectedSha256.Trim().ToLowerInvariant();
-                statusReporter($"Expected SHA256: {expectedSha256}");
+                    statusReporter("Fetching SHA256 checksum...");
+                    string sha256FileContent = await _httpClient.GetStringAsync(imageInfo.Sha256Url);
+                    expectedSha256 = sha256FileContent.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()?.Trim().ToLowerInvariant();
 
-                // 2. Check if the file already exists locally.
+                    if (string.IsNullOrWhiteSpace(expectedSha256))
+                    {
+                        throw new Exception("Could not parse SHA256 hash from the checksum file.");
+                    }
+                    statusReporter($"Expected SHA256: {expectedSha256}");
+                }
+                else
+                {
+                    statusReporter("No SHA256 checksum provided. Verification will be skipped.");
+                }
+
+                // 2. Check if a local file already exists and if it's valid.
                 if (File.Exists(targetFilePath))
                 {
+                    // If we don't have a hash to check against, the existing file is considered good enough.
+                    if (expectedSha256 == null)
+                    {
+                        statusReporter($"Using existing (unverified) file: {targetFileName}");
+                        progress.Report(100.0);
+                        return targetFilePath;
+                    }
+
+                    // If we do have a hash, we must verify the existing file.
                     statusReporter("Existing file found. Verifying checksum...");
                     string existingFileSha256 = await ComputeSha256Async(targetFilePath);
                     statusReporter($"Existing file SHA256: {existingFileSha256}");
 
-                    // 3. If the existing file's checksum matches, we can skip the download.
                     if (existingFileSha256 == expectedSha256)
                     {
                         statusReporter($"Using existing verified file: {targetFileName}");
-                        progress.Report(100.0); // Report completion.
+                        progress.Report(100.0);
                         return targetFilePath;
                     }
                     else
@@ -78,24 +95,27 @@ namespace ROCKNIXImageBurner.Services
                     }
                 }
 
-                // 4. Download the new file.
+                // 3. If we're here, we need to download the file.
                 statusReporter($"Downloading {imageInfo.OriginalName} image...");
                 await DownloadFileAsync(imageInfo.Url, targetFilePath, progress);
                 statusReporter("Download complete.");
 
-                // 5. Verify the checksum of the newly downloaded file.
-                statusReporter("Verifying checksum of new file...");
-                string actualSha256 = await ComputeSha256Async(targetFilePath);
-                statusReporter($"Actual SHA256: {actualSha256}");
-
-                if (actualSha256 != expectedSha256)
+                // 4. If verification is required, verify the newly downloaded file.
+                if (expectedSha256 != null)
                 {
-                    // If the new file is corrupt, delete it and throw an error.
-                    File.Delete(targetFilePath);
-                    throw new Exception($"Checksum mismatch after download. Expected: {expectedSha256}, Actual: {actualSha256}. The corrupted file has been deleted.");
+                    statusReporter("Verifying checksum of new file...");
+                    string actualSha256 = await ComputeSha256Async(targetFilePath);
+                    statusReporter($"Actual SHA256: {actualSha256}");
+
+                    if (actualSha256 != expectedSha256)
+                    {
+                        // If the new file is corrupt, delete it and throw an error.
+                        File.Delete(targetFilePath);
+                        throw new Exception($"Checksum mismatch after download. Expected: {expectedSha256}, Actual: {actualSha256}. The corrupted file has been deleted.");
+                    }
+                    statusReporter("Checksum verified successfully.");
                 }
 
-                statusReporter("Checksum verified successfully.");
                 return targetFilePath;
             }
             catch (Exception ex)
