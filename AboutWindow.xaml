@@ -36,10 +36,10 @@ It is a separate, non-resizable window that displays application information.
 
 		<TextBlock x:Name="VersionTextBlock" Grid.Row="2" Text="Version: 1.0.0.0" HorizontalAlignment="Center" Margin="0,5,0,0"/>
 
-		<TextBlock x:Name="CopyrightTextBlock" Grid.Row="3" Text="Copyright © 2025" HorizontalAlignment="Center" Margin="0,5,0,10"/>
+		<TextBlock x:Name="CopyrightTextBlock" Grid.Row="3" Text="Copyright © 2025 ROCKNIX" HorizontalAlignment="Center" Margin="0,5,0,10"/>
 
 		<TextBlock x:Name="DescriptionTextBlock" Grid.Row="4" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"
-                   Text="A utility for downloading and writing ROCKNIX OS images to removable media."/>
+                   Text="A utility for downloading and writing ROCKNIX images to removable media."/>
 
 		<Button x:Name="CloseButton" Grid.Row="5" Content="Close" Click="CloseButton_Click"
                 Width="100" HorizontalAlignment="Center" Margin="0,15,0,0" Padding="10,5"/>

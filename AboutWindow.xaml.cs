@@ -38,13 +38,6 @@ namespace ROCKNIXImageBurner
             // Get Version and format it to show Major.Minor.Build (e.g., "1.0.0")
             VersionTextBlock.Text = $"Version: {version.ToString(3)}";
 
-            // Get Copyright
-            var copyrightAttr = assembly.GetCustomAttribute<AssemblyCopyrightAttribute>();
-            if (copyrightAttr != null)
-            {
-                CopyrightTextBlock.Text = copyrightAttr.Copyright;
-            }
-
             // Get Description
             var descriptionAttr = assembly.GetCustomAttribute<AssemblyDescriptionAttribute>();
             if (descriptionAttr != null)

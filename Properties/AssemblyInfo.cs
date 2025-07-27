@@ -5,12 +5,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ROCKNIXImageBurner")]
-[assembly: AssemblyDescription("A utility for downloading and writing ROCKNIX OS images to removable media.")]
+[assembly: AssemblyTitle("ROCKNIX Image Burner")]
+[assembly: AssemblyDescription("A utility for downloading and writing ROCKNIX images to removable media.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ROCKNIX Team")]
 [assembly: AssemblyProduct("ROCKNIXImageBurner")]
-[assembly: AssemblyCopyright("Copyright © 2025")]
+[assembly: AssemblyCopyright("Copyright © 2025 ROCKNIX")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
