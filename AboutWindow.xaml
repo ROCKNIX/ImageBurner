@@ -11,6 +11,7 @@ It is a separate, non-resizable window that displays application information.
         Title="About ROCKNIX Image Burner"
         Height="300" Width="400"
         ResizeMode="NoResize"
+        xmlns:p="clr-namespace:ROCKNIXImageBurner.Properties"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         Icon="/rocknix.ico">
@@ -44,7 +45,7 @@ It is a separate, non-resizable window that displays application information.
 		<TextBlock x:Name="DescriptionTextBlock" Grid.Row="4" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"
                    Text="A utility for downloading and writing ROCKNIX images to removable media."/>
 
-		<Button x:Name="CloseButton" Grid.Row="5" Content="Close" Click="CloseButton_Click"
+		<Button x:Name="CloseButton" Grid.Row="5" Content="{x:Static p:Strings.btn_close}" Click="CloseButton_Click"
                 Width="100" HorizontalAlignment="Center" Margin="0,15,0,0" Padding="10,5"/>
 	</Grid>
 </Window>

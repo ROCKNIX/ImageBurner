@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btn_txt_refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="btn_txt_write" xml:space="preserve">
+    <value>向存储器写入镜像</value>
+  </data>
+  <data name="label_branch_selector" xml:space="preserve">
+    <value>选择分支：</value>
+  </data>
+  <data name="label_device_selector" xml:space="preserve">
+    <value>选择设备：</value>
+  </data>
+  <data name="label_dl_progress" xml:space="preserve">
+    <value>下载进度：</value>
+  </data>
+  <data name="label_drive_selector" xml:space="preserve">
+    <value>选择目标设备：</value>
+  </data>
+  <data name="label_languages" xml:space="preserve">
+    <value>语言：</value>
+  </data>
+  <data name="label_manufacturer_selector" xml:space="preserve">
+    <value>选择厂商：</value>
+  </data>
+  <data name="label_write_progress" xml:space="preserve">
+    <value>写入进度：</value>
+  </data>
+  <data name="msg_imglist_error" xml:space="preserve">
+    <value>无法载入镜像列表，源无效或列表为空。</value>
+  </data>
+  <data name="title_msg_imglist_err" xml:space="preserve">
+    <value>镜像列表错误</value>
+  </data>
+  <data name="status_fetching_imagelist" xml:space="preserve">
+    <value>拉取镜像列表...</value>
+  </data>
+  <data name="status_fetching_img_success" xml:space="preserve">
+    <value>已加载镜像，请选择一个分支。</value>
+  </data>
+  <data name="status_fetching_no_img" xml:space="preserve">
+    <value>未找到镜像或拉取列表错误。</value>
+  </data>
+  <data name="txt_warning" xml:space="preserve">
+    <value>警告：选择存储器并写入镜像，将擦除所选存储器的所有数据。</value>
+  </data>
+  <data name="status_img_fetch_error" xml:space="preserve">
+    <value>镜像拉取错误：</value>
+  </data>
+  <data name="msg_img_load_fail" xml:space="preserve">
+    <value>镜像列表载入失败：</value>
+  </data>
+  <data name="status_detecting_drives" xml:space="preserve">
+    <value>健侧移动存储设备。</value>
+  </data>
+  <data name="status_drives_loaded" xml:space="preserve">
+    <value>存储器已加载，请选择目标存储器</value>
+  </data>
+  <data name="status_drivce_un_detected" xml:space="preserve">
+    <value>未检测到可移动存储。</value>
+  </data>
+  <data name="msg_no_drives_detected" xml:space="preserve">
+    <value>未检测到可移动存储设备，请确定有SD卡或USE存储设备已连接。</value>
+  </data>
+  <data name="msg_title_no_drives" xml:space="preserve">
+    <value>没有发现存储</value>
+  </data>
+  <data name="status_detected_drives_err" xml:space="preserve">
+    <value>存储检测错误：</value>
+  </data>
+  <data name="msg_drives_detect_err" xml:space="preserve">
+    <value>存储检测失败：</value>
+  </data>
+  <data name="msg_title_drives_detect_err" xml:space="preserve">
+    <value>存储检测错误</value>
+  </data>
+  <data name="status_init_data" xml:space="preserve">
+    <value>载入初始数据...</value>
+  </data>
+  <data name="btn_close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="msg_unexpected_err" xml:space="preserve">
+    <value>发生未知错误：</value>
+  </data>
+  <data name="title_operate_fail" xml:space="preserve">
+    <value>操作失败</value>
+  </data>
+  <data name="msg_w32_write_err" xml:space="preserve">
+    <value>在向{0}写入时发生了一个系统错误：{1}（code：{2}）\n\n请确定程序使用管理员权限运行，并且存储设备没有被其他程序占用。</value>
+  </data>
+  <data name="msg_title_sys_w_err" xml:space="preserve">
+    <value>系统写入错误</value>
+  </data>
+  <data name="status_denied_writing" xml:space="preserve">
+    <value>错误：向{0}写入被拒绝。</value>
+  </data>
+  <data name="msg_acc_deny_details" xml:space="preserve">
+    <value>向存储设备{0}写入失败：写入被拒绝（Error Code:5）。\n\n这可能是因为其他应用程序（如文件资源管理器）正在占用该存储设备所致。\n\n请尝试以下操作：\n1、请确保本程序是以管理员权限运行的。\n2、关闭所有打开该驱动器的文件资源管理器窗口。\n3、先在 Windows 中安全弹出存储设备，然后重新插入并再次尝试。</value>
+  </data>
+  <data name="msg_acc_deny_details_diag" xml:space="preserve">
+    <value>\n\n诊断：工具无法识别驱动器上的可自动卸载卷，可能引发此错误。</value>
+  </data>
+  <data name="status_write_comp_success" xml:space="preserve">
+    <value>写入操作成功完成。</value>
+  </data>
+  <data name="msg_write_success" xml:space="preserve">
+    <value>已成功将镜像写入设备！</value>
+  </data>
+  <data name="msg_title_success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="status_writing_not_remove" xml:space="preserve">
+    <value>镜像写入中，请勿移除设备。</value>
+  </data>
+  <data name="status_cancel_by_user" xml:space="preserve">
+    <value>用户取消写入操作。</value>
+  </data>
+  <data name="msg_write_confirm" xml:space="preserve">
+    <value>警告！\n\n即将将「{0}」（{1} 分支）写入驱动器「{2}」。\n所选驱动器上的所有数据将被永久擦除，无法恢复。\n\n您是否绝对确定要继续操作？</value>
+  </data>
+  <data name="msg_title_write_confirm" xml:space="preserve">
+    <value>确认写入操作</value>
+  </data>
+  <data name="msg_drive_select_notice" xml:space="preserve">
+    <value>请选择目标存储设备</value>
+  </data>
+  <data name="msg_title_drive_select_notice" xml:space="preserve">
+    <value>未选择存储设备</value>
+  </data>
+  <data name="msg_img_select_notice" xml:space="preserve">
+    <value>请选择分支、厂商及设备型号写入</value>
+  </data>
+  <data name="msg_title_img_select_notice" xml:space="preserve">
+    <value>未选择镜像</value>
+  </data>
+  <data name="status_pre_write" xml:space="preserve">
+    <value>准备向[{1}]中写入[{0}]</value>
+  </data>
+  <data name="msg_title_denied_writing" xml:space="preserve">
+    <value>写入失败 - 拒绝写入</value>
+  </data>
+</root>

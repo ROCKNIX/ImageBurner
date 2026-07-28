@@ -12,6 +12,7 @@ This is the main window of the application.
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ROCKNIXImageBurner"
         mc:Ignorable="d"
+        xmlns:p="clr-namespace:ROCKNIXImageBurner.Properties"
         Title="ROCKNIX Image Burner" Height="550" Width="700" MinHeight="520" MinWidth="600" Icon="/rocknix.ico">
 
     <!-- The main layout container is a Grid with a 15-pixel margin. -->
@@ -82,41 +83,41 @@ This is the main window of the application.
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Margin="0,0,5,0">
-                <TextBlock Text="Select Manufacturer:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ComboBox x:Name="ManufacturerComboBox" SelectionChanged="ManufacturerComboBox_SelectionChanged" MinHeight="30"/>
+                <TextBlock Text="{x:Static p:Strings.label_manufacturer_selector}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <ComboBox x:Name="ManufacturerComboBox" SelectionChanged="ManufacturerComboBox_SelectionChanged" VerticalContentAlignment="Center" MinHeight="30"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="5,0,0,0">
-                <TextBlock Text="Select Device:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <TextBlock Text="{x:Static p:Strings.label_device_selector}" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <!-- DisplayMemberPath is set to 'Device' to show the Device property of the ImageInfo object. -->
-                <ComboBox x:Name="DeviceComboBox" DisplayMemberPath="Device" SelectionChanged="DeviceComboBox_SelectionChanged" MinHeight="30"/>
+                <ComboBox x:Name="DeviceComboBox" DisplayMemberPath="Device" SelectionChanged="DeviceComboBox_SelectionChanged" MinHeight="30" VerticalContentAlignment="Center"/>
             </StackPanel>
         </Grid>
 
         <!-- Row 2: Branch Selection -->
         <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,0,0,15">
-            <TextBlock Text="Select Branch:" FontWeight="SemiBold" Margin="0,0,0,5"/>
-            <ComboBox x:Name="BranchComboBox" SelectionChanged="BranchComboBox_SelectionChanged" MinHeight="30"/>
+            <TextBlock Text="{x:Static p:Strings.label_branch_selector}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <ComboBox x:Name="BranchComboBox" SelectionChanged="BranchComboBox_SelectionChanged" MinHeight="30" VerticalContentAlignment="Center"/>
         </StackPanel>
 
         <!-- Row 3: Target Drive Selection -->
         <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0,0,0,15">
-            <TextBlock Text="Select Target Drive:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <TextBlock Text="{x:Static p:Strings.label_drive_selector}" FontWeight="SemiBold" Margin="0,0,0,5"/>
             <!-- A nested Grid is used to place the Refresh button next to the ComboBox. -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="DriveComboBox" Grid.Column="0" DisplayMemberPath="DisplayString" MinHeight="30"/>
-                <Button x:Name="RefreshDrivesButton" Grid.Column="1" Content="Refresh" Click="RefreshDrivesButton_Click" Margin="10,0,0,0" Padding="10,5" MinHeight="30"/>
+                <ComboBox x:Name="DriveComboBox" Grid.Column="0" DisplayMemberPath="DisplayString"  VerticalContentAlignment="Center" MinHeight="30"/>
+                <Button x:Name="RefreshDrivesButton" Grid.Column="1" Content="{x:Static p:Strings.btn_txt_refresh}" Click="RefreshDrivesButton_Click" Margin="10,0,0,0" Padding="10,5" MinHeight="30"/>
             </Grid>
             <!-- A prominent warning about data erasure. -->
-            <TextBlock Text="WARNING: Selecting a drive and writing an image will ERASE ALL DATA on the selected drive." Foreground="DarkRed" FontWeight="Bold" Margin="0,5,0,0" TextWrapping="Wrap"/>
+            <TextBlock Text="{x:Static p:Strings.txt_warning}" Foreground="DarkRed" FontWeight="Bold" Margin="0,5,0,0" TextWrapping="Wrap"/>
         </StackPanel>
 
         <!-- Row 4: Write Button -->
-        <Button x:Name="WriteButton" Grid.Row="4" Content="Write Image to Drive" Click="WriteButton_Click" Padding="10" FontSize="16" FontWeight="Bold" Background="#FF007ACC" Foreground="White" Margin="0,10,0,20" MinHeight="40">
+        <Button x:Name="WriteButton" Grid.Row="4" Content="{x:Static p:Strings.btn_txt_write}" Click="WriteButton_Click" Padding="10" FontSize="16" FontWeight="Bold" Background="#FF007ACC" Foreground="White" Margin="0,10,0,20" MinHeight="40">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Cursor" Value="Hand"/>
@@ -132,20 +133,23 @@ This is the main window of the application.
 
         <!-- Row 5: Download Progress -->
         <StackPanel Grid.Row="5" Margin="0,0,0,5">
-            <TextBlock Text="Download Progress:" Margin="0,0,0,2"/>
+            <TextBlock Text="{x:Static p:Strings.label_dl_progress}" Margin="0,0,0,2"/>
             <ProgressBar x:Name="DownloadProgressBar" Height="20" Minimum="0" Maximum="100"/>
         </StackPanel>
 
         <!-- Row 6: Write Progress -->
         <StackPanel Grid.Row="6" Margin="0,0,0,10">
-            <TextBlock Text="Write Progress:" Margin="0,0,0,2"/>
+            <TextBlock Text="{x:Static p:Strings.label_write_progress}" Margin="0,0,0,2"/>
             <ProgressBar x:Name="WriteProgressBar" Height="20" Minimum="0" Maximum="100"/>
         </StackPanel>
 
         <!-- Row 8: Status Bar at the bottom of the window. -->
         <StatusBar Grid.Row="8" VerticalAlignment="Bottom">
             <StatusBarItem>
-                <TextBlock x:Name="StatusTextBlock" Text="Ready."/>
+                <TextBlock x:Name="StatusTextBlock" Text="Ready." />
+            </StatusBarItem> 
+            <StatusBarItem  HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal"/>
             </StatusBarItem>
         </StatusBar>
     </Grid>
