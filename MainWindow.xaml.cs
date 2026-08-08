@@ -1,4 +1,5 @@
 using ROCKNIXImageBurner.Models;
+using ROCKNIXImageBurner.Properties;
 using ROCKNIXImageBurner.Services;
 using System;
 using System.Collections.Generic;
@@ -158,7 +159,7 @@ namespace ROCKNIXImageBurner
         /// </summary>
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            SetStatus("Loading initial data...");
+            SetStatus(Strings.status_init_data);
             SetControlsEnabled(false);
 
             await LoadAllImageDataAsync();
@@ -189,25 +190,25 @@ namespace ROCKNIXImageBurner
         /// </summary>
         private async Task LoadAllImageDataAsync()
         {
-            SetStatus("Fetching image list...");
+            SetStatus(Strings.status_fetching_img_success);
             try
             {
                 _allImages = await _imageFetcher.FetchImagesAsync();
                 if (_allImages.Any())
                 {
                     PopulateBranches();
-                    SetStatus("Image data loaded. Please select a branch.");
+                    SetStatus(Strings.status_fetching_img_success);
                 }
                 else
                 {
-                    SetStatus("No images found or error fetching list.");
-                    MessageBox.Show("Could not load the list of images. The source might be unavailable or the list empty.", "Image List Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    SetStatus(Strings.status_fetching_no_img);
+                    MessageBox.Show(Strings.msg_imglist_error, Strings.title_msg_imglist_err, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
             {
-                SetStatus($"Error fetching images: {ex.Message}");
-                MessageBox.Show($"Failed to load image list: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                SetStatus($"{Strings.status_img_fetch_error} {ex.Message}");
+                MessageBox.Show($"{Strings.msg_img_load_fail} {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -348,7 +349,7 @@ namespace ROCKNIXImageBurner
         /// <param name="isInitialLoad">If true, suppresses some UI feedback to avoid noise on startup.</param>
         private async Task LoadDrivesAsync(bool isInitialLoad = false)
         {
-            SetStatus("Detecting removable drives...");
+            SetStatus(Strings.status_detecting_drives);
             if (!isInitialLoad)
             {
                 SetControlsEnabled(false);
@@ -369,21 +370,21 @@ namespace ROCKNIXImageBurner
                     {
                         DriveComboBox.SelectedIndex = 0;
                     }
-                    SetStatus("Drives loaded. Select a target drive.");
+                    SetStatus(Strings.status_drives_loaded);
                 }
                 else
                 {
-                    SetStatus("No removable drives detected.");
+                    SetStatus(Strings.status_drivce_un_detected);
                     if (isInitialLoad)
                     {
-                        MessageBox.Show("No removable drives were detected. Please ensure an SD card or USB drive is connected.", "No Drives Found", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Strings.msg_no_drives_detected, Strings.msg_title_no_drives, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                SetStatus($"Error detecting drives: {ex.Message}");
-                MessageBox.Show($"Failed to detect drives: {ex.Message}", "Drive Detection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                SetStatus($"{Strings.status_detected_drives_err} {ex.Message}");
+                MessageBox.Show($"{Strings.msg_drives_detect_err} {ex.Message}", Strings.msg_title_drives_detect_err, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -455,28 +456,26 @@ namespace ROCKNIXImageBurner
             // 1. Validate selections
             if (selectedImageInfo == null)
             {
-                MessageBox.Show("Please select a branch, manufacturer, and device to write.", "No Image Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Strings.msg_img_select_notice, Strings.msg_title_img_select_notice, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (selectedDrive == null)
             {
-                MessageBox.Show("Please select a target drive.", "No Drive Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Strings.msg_drive_select_notice, Strings.msg_title_drive_select_notice, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             // 2. Confirm with the user, as this is a destructive operation.
             var confirmation = MessageBox.Show(
-                $"WARNING!\n\nYou are about to write '{selectedImageInfo.OriginalName}' ({selectedImageInfo.Branch}) to the drive '{selectedDrive.DisplayString}'.\n" +
-                "ALL DATA ON THE SELECTED DRIVE WILL BE PERMANENTLY ERASED.\n\n" +
-                "Are you absolutely sure you want to continue?",
-                "Confirm Write Operation",
+                Strings.msg_write_confirm,
+                Strings.msg_title_write_confirm,
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
 
             if (confirmation != MessageBoxResult.Yes)
             {
-                SetStatus("Write operation cancelled by user.");
+                SetStatus(Strings.status_cancel_by_user);
                 return;
             }
 
@@ -493,8 +492,8 @@ namespace ROCKNIXImageBurner
                 _downloadedImagePath = await _imageDownloader.DownloadAndVerifyAsync(selectedImageInfo, downloadProgress, SetStatus);
                 DownloadProgressBar.Value = 100;
 
-                // 3b. Prepare for writing by getting volume paths for dismounting.
-                SetStatus($"Preparing to write '{selectedImageInfo.OriginalName}' to '{selectedDrive.DeviceID}'...");
+                // 3b. Prepare for writing by getting volume paths for dismounting. 
+                SetStatus(string.Format(Strings.status_pre_write,selectedImageInfo.OriginalName,selectedDrive.DeviceID));
                 volumePaths = await Task.Run(() => _driveDetector.GetVolumePathsForPhysicalDrive(selectedDrive.DeviceID));
 
                 if (string.IsNullOrEmpty(_downloadedImagePath))
@@ -503,45 +502,39 @@ namespace ROCKNIXImageBurner
                 }
 
                 // 3c. Write the image to the drive.
-                SetStatus($"Writing image... DO NOT REMOVE THE DRIVE.");
+                SetStatus(Strings.status_writing_not_remove);
                 var writeProgress = new Progress<double>(p => WriteProgressBar.Value = p);
                 await _imageWriter.WriteImageAsync(_downloadedImagePath, selectedDrive.DeviceID, volumePaths, writeProgress, selectedImageInfo);
                 WriteProgressBar.Value = 100;
 
-                SetStatus("Write operation completed successfully!");
-                MessageBox.Show("Image successfully written to the drive!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                SetStatus(Strings.status_write_comp_success);
+                MessageBox.Show(Strings.msg_write_success, Strings.msg_title_success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Win32Exception ex) when (ex.NativeErrorCode == 5 && selectedDrive != null) // Access Denied
             {
                 // This is a common and specific error, so provide a detailed, helpful message.
-                string detailedMessage = $"Failed to write to drive {selectedDrive.DeviceID}: Access Denied (Error Code: 5).\n\n" +
-                                         "This can occur if another application (like File Explorer) has a lock on the drive.\n\n" +
-                                         "Please try the following:\n" +
-                                         "1. Ensure this application is running with Administrator privileges.\n" +
-                                         "2. Close any File Explorer windows open to the drive.\n" +
-                                         "3. Safely eject the drive from Windows, then re-insert it and try again.";
+                string detailedMessage = string.Format(Strings.msg_acc_deny_details, selectedDrive.DeviceID);
 
                 if (!volumePaths.Any())
                 {
-                    detailedMessage += "\n\n(Diagnostic: The tool could not identify specific volumes on this drive to dismount automatically, which can contribute to this error.)";
+                    detailedMessage += Strings.msg_acc_deny_details_diag;
                 }
 
-                SetStatus($"ERROR: Access Denied writing to {selectedDrive.DeviceID}.");
-                MessageBox.Show(detailedMessage, "Write Error - Access Denied", MessageBoxButton.OK, MessageBoxImage.Error);
+                SetStatus(string.Format(Strings.status_denied_writing,selectedDrive.DeviceID));
+                MessageBox.Show(detailedMessage, Strings.msg_title_denied_writing, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Win32Exception ex) // Other system errors
             {
-                string driveId = selectedDrive?.DeviceID ?? "the selected drive";
-                string detailedMessage = $"A system error occurred while writing to {driveId}: {ex.Message} (Code: {ex.NativeErrorCode}).\n\n" +
-                                         "Please ensure the application is run as Administrator and the drive is not in use by other utilities.";
+                string driveId = selectedDrive?.DeviceID ?? "the selected drive";          
+                string detailedMessage =string.Format(Strings.msg_w32_write_err,driveId,ex.Message,ex.NativeErrorCode);
 
                 SetStatus($"ERROR: {ex.Message} (Code: {ex.NativeErrorCode}) on drive {driveId}");
-                MessageBox.Show(detailedMessage, "System Write Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(detailedMessage, Strings.msg_title_sys_w_err, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex) // All other errors
             {
                 SetStatus($"ERROR: {ex.Message}");
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Operation Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{Strings.msg_unexpected_err} {ex.Message}", Strings.title_operate_fail, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {

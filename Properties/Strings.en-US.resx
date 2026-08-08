@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btn_txt_refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="btn_txt_write" xml:space="preserve">
+    <value>Write Image to Drive</value>
+  </data>
+  <data name="label_branch_selector" xml:space="preserve">
+    <value>Select Branch:</value>
+  </data>
+  <data name="label_device_selector" xml:space="preserve">
+    <value>Select Device:</value>
+  </data>
+  <data name="label_dl_progress" xml:space="preserve">
+    <value>Download Progress:</value>
+  </data>
+  <data name="label_drive_selector" xml:space="preserve">
+    <value>Select Target Drive:</value>
+  </data>
+  <data name="label_languages" xml:space="preserve">
+    <value>Languages:</value>
+  </data>
+  <data name="label_manufacturer_selector" xml:space="preserve">
+    <value>Select Manufacturer:</value>
+  </data>
+  <data name="label_write_progress" xml:space="preserve">
+    <value>Write Progress:</value>
+  </data>
+  <data name="msg_imglist_error" xml:space="preserve">
+    <value>Could not load the list of images. The source might be unavailable or the list empty.</value>
+  </data>
+  <data name="title_msg_imglist_err" xml:space="preserve">
+    <value>Image List Error</value>
+  </data>
+  <data name="status_fetching_imagelist" xml:space="preserve">
+    <value>Fetching image list...</value>
+  </data>
+  <data name="status_fetching_img_success" xml:space="preserve">
+    <value>Image data loaded. Please select a branch.</value>
+  </data>
+  <data name="status_fetching_no_img" xml:space="preserve">
+    <value>No images found or error fetching list.</value>
+  </data>
+  <data name="txt_warning" xml:space="preserve">
+    <value>WARNING: Selecting a drive and writing an image will ERASE ALL DATA on the selected drive.</value>
+  </data>
+  <data name="status_img_fetch_error" xml:space="preserve">
+    <value>Error fetching images: </value>
+  </data>
+  <data name="msg_img_load_fail" xml:space="preserve">
+    <value>Failed to load image list: </value>
+  </data>
+  <data name="status_detecting_drives" xml:space="preserve">
+    <value>Detecting removable drives...</value>
+  </data>
+  <data name="status_drives_loaded" xml:space="preserve">
+    <value>Drives loaded. Select a target drive.</value>
+  </data>
+  <data name="status_drivce_un_detected" xml:space="preserve">
+    <value>No removable drives detected.</value>
+  </data>
+  <data name="msg_no_drives_detected" xml:space="preserve">
+    <value>No removable drives were detected. Please ensure an SD card or USB drive is connected.</value>
+  </data>
+  <data name="msg_title_no_drives" xml:space="preserve">
+    <value>No Drives Found</value>
+  </data>
+  <data name="status_detected_drives_err" xml:space="preserve">
+    <value>Error detecting drives: </value>
+  </data>
+  <data name="msg_drives_detect_err" xml:space="preserve">
+    <value>Failed to detect drives: </value>
+  </data>
+  <data name="msg_title_drives_detect_err" xml:space="preserve">
+    <value>Drive Detection Error</value>
+  </data>
+  <data name="status_init_data" xml:space="preserve">
+    <value>Loading initial data...</value>
+  </data>
+  <data name="btn_close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="msg_unexpected_err" xml:space="preserve">
+    <value>An unexpected error occurred:</value>
+  </data>
+  <data name="title_operate_fail" xml:space="preserve">
+    <value>Operation Failed</value>
+  </data>
+  <data name="msg_w32_write_err" xml:space="preserve">
+    <value>A system error occurred while writing to {0}: {1} (Code: {2}).\n\nPlease ensure the application is run as Administrator and the drive is not in use by other utilities.</value>
+  </data>
+  <data name="msg_title_sys_w_err" xml:space="preserve">
+    <value>System Write Error</value>
+  </data>
+  <data name="status_denied_writing" xml:space="preserve">
+    <value>ERROR: Access Denied writing to {0}.</value>
+  </data>
+  <data name="msg_acc_deny_details" xml:space="preserve">
+    <value>Failed to write to drive {0}: Access Denied (Error Code: 5).\n\nThis can occur if another application (like File Explorer) has a lock on the drive.\n\nPlease try the following:\n1. Ensure this application is running with Administrator privileges.\n2. Close any File Explorer windows open to the drive.\n3. Safely eject the drive from Windows, then re-insert it and try again.</value>
+  </data>
+  <data name="msg_acc_deny_details_diag" xml:space="preserve">
+    <value>\n\nDiagnostic: The tool could not identify specific volumes on this drive to dismount automatically, which can contribute to this error.)</value>
+  </data>
+  <data name="status_write_comp_success" xml:space="preserve">
+    <value>Write operation completed successfully!</value>
+  </data>
+  <data name="msg_write_success" xml:space="preserve">
+    <value>Image successfully written to the drive!</value>
+  </data>
+  <data name="msg_title_success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="status_writing_not_remove" xml:space="preserve">
+    <value>Writing image... DO NOT REMOVE THE DRIVE.</value>
+  </data>
+  <data name="status_cancel_by_user" xml:space="preserve">
+    <value>Write operation cancelled by user.</value>
+  </data>
+  <data name="msg_write_confirm" xml:space="preserve">
+    <value>WARNING!\n\nYou are about to write '{0}' ({1}) to the drive '{2}'.\nALL DATA ON THE SELECTED DRIVE WILL BE PERMANENTLY ERASED.\n\nAre you absolutely sure you want to continue?</value>
+  </data>
+  <data name="msg_title_write_confirm" xml:space="preserve">
+    <value>Confirm Write Operation</value>
+  </data>
+  <data name="msg_drive_select_notice" xml:space="preserve">
+    <value>Please select a target drive.</value>
+  </data>
+  <data name="msg_title_drive_select_notice" xml:space="preserve">
+    <value>No Drive Selected</value>
+  </data>
+  <data name="msg_img_select_notice" xml:space="preserve">
+    <value>Please select a branch, manufacturer, and device to write.</value>
+  </data>
+  <data name="msg_title_img_select_notice" xml:space="preserve">
+    <value>No Image Selected</value>
+  </data>
+  <data name="status_pre_write" xml:space="preserve">
+    <value>Preparing to write '{0}' to '{1}'...</value>
+  </data>
+  <data name="msg_title_denied_writing" xml:space="preserve">
+    <value>Write Error - Access Denied</value>
+  </data>
+</root>
